@@ -1,9 +1,7 @@
+import Message from './Message';
+
 const PageNotFound = () => {
-	return (
-		<div className="flex items-center justify-center text-4xl font-bold mt-12">
-			The page you are looking for could not be found.
-		</div>
-	);
+	return <Message>The page you are looking for could not be found.</Message>;
 };
 
 export default PageNotFound;

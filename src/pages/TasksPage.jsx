@@ -53,7 +53,10 @@ const TasksPage = () => {
 				</div>
 
 				{tasks.length === 0 ? (
-					<Message>No tasks yet. Add now</Message>
+					<Message>
+						Welcome! You have no tasks yet. Click the Add task button to get
+						started!
+					</Message>
 				) : (
 					<TaskCards tasks={tasks} setTasks={setTasks} />
 				)}

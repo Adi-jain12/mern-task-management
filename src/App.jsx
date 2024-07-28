@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import AppLayout from './ui/AppLayout';
 import HomePage from './pages/HomePage';
 import TasksPage from './pages/TasksPage';
+import PageNotFound from './components/PageNotFound';
 
 const App = () => {
 	return (
@@ -24,7 +25,7 @@ const App = () => {
 					}
 				/>
 
-				{/* <Route path="*" element={<PageNotFound />} /> */}
+				<Route path="*" element={<PageNotFound />} />
 			</Routes>
 		</BrowserRouter>
 	);

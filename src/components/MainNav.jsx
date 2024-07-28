@@ -8,11 +8,7 @@ const MainNav = () => {
 				<li>
 					<NavLink
 						to="/tasks"
-						className={({ isActive }) =>
-							`flex items-center gap-3 text-white text-lg font-medium p-5 transition-all duration-300 bg-gray-900 hover:bg-black hover:text-slate-100 rounded-xl ${
-								isActive ? 'text-gray-800 bg-gray-50 rounded-sm' : ''
-							}`
-						}
+						className="flex items-center gap-3 text-white text-lg font-medium p-5 transition-all duration-300 bg-gray-900 hover:bg-black hover:text-slate-100 rounded-xl"
 					>
 						<FaTasks className="w-6 h-6 text-white transition-all duration-300" />
 						<span>All tasks</span>

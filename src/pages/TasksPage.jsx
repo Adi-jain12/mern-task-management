@@ -11,7 +11,7 @@ const TasksPage = () => {
 	const [tasks, setTasks] = useState(initialTasks);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	const totalTasks = tasks.length;
+	const totalTasks = tasks.filter((task) => task.isDone !== true).length;
 
 	useEffect(() => {
 		localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -26,6 +26,18 @@ const TasksPage = () => {
 
 		setTasks([...tasks, newTaskItem]);
 		setIsModalOpen(false);
+	};
+
+	const handleMarkAsDone = (id) => {
+		setTasks((prevTasks) =>
+			prevTasks.map((task) =>
+				task.id === id ? { ...task, isDone: !task.isDone } : task
+			)
+		);
+	};
+
+	const handleDeleteTask = (id) => {
+		setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
 	};
 
 	return (
@@ -58,7 +70,12 @@ const TasksPage = () => {
 						started!
 					</Message>
 				) : (
-					<TaskCards tasks={tasks} setTasks={setTasks} />
+					<TaskCards
+						tasks={tasks}
+						setTasks={setTasks}
+						markAsDoneButton={handleMarkAsDone}
+						onDeleteTask={handleDeleteTask}
+					/>
 				)}
 			</div>
 

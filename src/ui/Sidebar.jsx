@@ -8,10 +8,6 @@ const Sidebar = () => {
 				<CgGoogleTasks />
 			</div>
 			<MainNav />
-
-			{/* <Logo />
-      <MainNav />
-      <Uploader /> */}
 		</aside>
 	);
 };

@@ -1,8 +1,17 @@
-# React + Vite
+# Task Management Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An intuitive task management website built with the MERN stack. This project allows users to create, manage, and track tasks with a clean user interface.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Task Addition Screen**: Users can add new tasks via a dedicated screen.
+2. **Task Overview Page**: All tasks are visible on a tasks page.
+3. **Task Status Management**: Ability to mark tasks as done or not done.
+4. **Local Storage Persistence**: Data is saved in local storage instead of a database, ensuring data persistence.
+5. **UI/UX Design**: The user interface is designed to showcase modern UI/UX.
+6. **Framework**: Built using React.js.
+
+## Technologies Used
+
+- **Frontend**: React.js, Tailwind CSS
+- **Data Persistence**: Local Storage

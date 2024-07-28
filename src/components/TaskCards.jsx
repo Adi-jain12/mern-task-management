@@ -1,21 +1,14 @@
 import { useState } from 'react';
-import { AiFillEdit } from 'react-icons/ai';
+import { FaTrash } from 'react-icons/fa6';
+import { FaCheckCircle, FaRegCircle, FaEdit } from 'react-icons/fa';
 
-function TaskCards({ tasks, setTasks }) {
+function TaskCards({ tasks, setTasks, markAsDoneButton, onDeleteTask }) {
 	const [editTaskId, setEditTaskId] = useState(null);
 	const [editedTask, setEditedTask] = useState({
 		title: '',
 		description: '',
 		dueDate: '',
 	});
-
-	const markAsDoneButton = (id) => {
-		setTasks((prevTasks) =>
-			prevTasks.map((task) =>
-				task.id === id ? { ...task, isDone: !task.isDone } : task
-			)
-		);
-	};
 
 	const startEditing = (task) => {
 		setEditTaskId(task.id);
@@ -98,7 +91,7 @@ function TaskCards({ tasks, setTasks }) {
 							>
 								{task.description}
 							</p>
-							<div className="flex items-center mb-4">
+							<div className="flex items-center mb-6">
 								<span
 									className={`text-sm ${
 										task.isDone ? 'line-through text-gray-400' : ''
@@ -110,23 +103,40 @@ function TaskCards({ tasks, setTasks }) {
 							</div>
 							<div className="flex items-center justify-between mb-4">
 								<button
-									className={`flex-1 px-4 py-2 rounded-lg ${
+									className={`flex items-center justify-center gap-2 px-4 py-2 rounded-lg ${
 										task.isDone
 											? 'bg-green-500 text-white hover:bg-green-600'
 											: 'bg-red-500 text-white hover:bg-red-600'
 									}`}
 									onClick={() => markAsDoneButton(task.id)}
 								>
-									{task.isDone ? 'Mark as Not Done' : 'Mark as Done'}
+									{task.isDone ? (
+										<>
+											<FaCheckCircle /> Mark as Not Done
+										</>
+									) : (
+										<>
+											<FaRegCircle /> Mark as Done
+										</>
+									)}
 								</button>
-								{!task.isDone && (
+								<div className="flex">
+									{!task.isDone && (
+										<button
+											className="mr-6 text-2xl"
+											onClick={() => startEditing(task)}
+										>
+											<FaEdit />
+										</button>
+									)}
+
 									<button
-										className="px-3 py-2 text-white bg-black hover:bg-gray-900 rounded-lg ml-2 text-xl"
-										onClick={() => startEditing(task)}
+										className="text-xl"
+										onClick={() => onDeleteTask(task.id)}
 									>
-										<AiFillEdit />
+										<FaTrash />
 									</button>
-								)}
+								</div>
 							</div>
 						</div>
 					)}

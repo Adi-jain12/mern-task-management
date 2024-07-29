@@ -44,7 +44,7 @@ const TasksPage = () => {
 		<>
 			<div className="flex flex-col gap-8">
 				<span className="text-xl mb-4">
-					<p className="text-gray-500">Hello, {username}!</p>
+					<p className="text-gray-500">Hello, {username || 'User'}!</p>
 					<p className="text-3xl font-bold">
 						You&apos;ve got{' '}
 						{totalTasks === 1 ? `${totalTasks} task ` : `${totalTasks} tasks `}

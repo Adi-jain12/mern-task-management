@@ -1,8 +1,10 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AppLayout from './ui/AppLayout';
 import HomePage from './pages/HomePage';
 import TasksPage from './pages/TasksPage';
 import PageNotFound from './components/PageNotFound';
+import CompletedTasksPage from './pages/CompletedTasksPage';
+import PendingTasksPage from './pages/PendingTasksPage';
 
 const App = () => {
 	return (
@@ -21,6 +23,24 @@ const App = () => {
 					element={
 						<AppLayout sidebar={true}>
 							<TasksPage />
+						</AppLayout>
+					}
+				/>
+
+				<Route
+					path="completed-tasks"
+					element={
+						<AppLayout sidebar={true}>
+							<CompletedTasksPage />
+						</AppLayout>
+					}
+				/>
+
+				<Route
+					path="pending-tasks"
+					element={
+						<AppLayout sidebar={true}>
+							<PendingTasksPage />
 						</AppLayout>
 					}
 				/>

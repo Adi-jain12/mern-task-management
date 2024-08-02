@@ -22,7 +22,7 @@ const CreateUser = () => {
 			onSubmit={handleSubmit}
 			className="flex flex-col items-center justify-center gap-2"
 		>
-			<p className="mb-4 text-xl text-stone-600">
+			<p className="mb-4 text-xl text-gray-800">
 				👋 Welcome! Please start by telling us your name:
 			</p>
 

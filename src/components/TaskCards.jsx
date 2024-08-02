@@ -10,6 +10,11 @@ function TaskCards({ tasks, setTasks, markAsDoneButton, onDeleteTask }) {
 		dueDate: '',
 	});
 
+	const formatDate = (date) => {
+		const options = { month: 'short', day: 'numeric', year: 'numeric' };
+		return new Date(date).toLocaleDateString('en-US', options);
+	};
+
 	const startEditing = (task) => {
 		setEditTaskId(task.id);
 		setEditedTask({
@@ -21,7 +26,10 @@ function TaskCards({ tasks, setTasks, markAsDoneButton, onDeleteTask }) {
 
 	const handleEditChange = (e) => {
 		const { name, value } = e.target;
-		setEditedTask((prevTask) => ({ ...prevTask, [name]: value }));
+		setEditedTask((prevTask) => ({
+			...prevTask,
+			[name]: name === 'dueDate' ? formatDate(value) : value,
+		}));
 	};
 
 	const saveTask = () => {
@@ -37,7 +45,12 @@ function TaskCards({ tasks, setTasks, markAsDoneButton, onDeleteTask }) {
 	return (
 		<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 			{tasks.map((task) => (
-				<div key={task.id} className="max-w-sm rounded-2xl p-6 bg-yellow-300">
+				<div
+					key={task.id}
+					className={`max-w-sm rounded-2xl p-6 ${
+						task.isDone ? 'bg-green-300' : 'bg-yellow-300'
+					}`}
+				>
 					{editTaskId === task.id ? (
 						<div>
 							<input
@@ -62,13 +75,13 @@ function TaskCards({ tasks, setTasks, markAsDoneButton, onDeleteTask }) {
 							/>
 							<div className="flex mt-4 justify-between items-center ">
 								<button
-									className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+									className="bg-teal-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-teal-700"
 									onClick={saveTask}
 								>
-									Save
+									Update
 								</button>
 								<button
-									className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+									className="bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600"
 									onClick={() => setEditTaskId(null)}
 								>
 									Cancel
@@ -78,15 +91,15 @@ function TaskCards({ tasks, setTasks, markAsDoneButton, onDeleteTask }) {
 					) : (
 						<div>
 							<h3
-								className={`text-xl font-semibold mb-2 ${
-									task.isDone ? 'line-through text-gray-400' : ''
+								className={`text-xl font-bold mb-2 ${
+									task.isDone ? 'line-through text-gray-500' : ''
 								}`}
 							>
 								{task.title}
 							</h3>
 							<p
-								className={`text-gray-600 mb-4 ${
-									task.isDone ? 'line-through text-gray-400' : ''
+								className={`text-md text-gray-600 mb-4 ${
+									task.isDone ? 'line-through text-gray-500' : ''
 								}`}
 							>
 								{task.description}
@@ -94,7 +107,7 @@ function TaskCards({ tasks, setTasks, markAsDoneButton, onDeleteTask }) {
 							<div className="flex items-center mb-6">
 								<span
 									className={`text-sm ${
-										task.isDone ? 'line-through text-gray-400' : ''
+										task.isDone ? 'line-through text-gray-500' : ''
 									}`}
 								>
 									<span className="font-semibold">Due Date : </span>
@@ -105,8 +118,8 @@ function TaskCards({ tasks, setTasks, markAsDoneButton, onDeleteTask }) {
 								<button
 									className={`flex items-center justify-center gap-2 px-4 py-2 rounded-lg ${
 										task.isDone
-											? 'bg-green-500 text-white hover:bg-green-600'
-											: 'bg-red-500 text-white hover:bg-red-600'
+											? 'bg-red-600 text-white hover:bg-red-700 font-semibold'
+											: 'bg-green-600 text-white hover:bg-green-700 font-semibold'
 									}`}
 									onClick={() => markAsDoneButton(task.id)}
 								>
